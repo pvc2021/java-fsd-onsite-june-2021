@@ -1,0 +1,124 @@
+Day1    21-Jun-2021
+====================
+JDK 8
+=====
+https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html#license-lightbox
+
+
+STS Download
+============
+https://dist.springsource.com/release/STS/3.9.11.RELEASE/dist/e4.14/spring-tool-suite-3.9.11.RELEASE-e4.14.0-win32-x86_64.zip
+
+Spring Distrubution 5.0
+=======================
+https://repo.spring.io/release/org/springframework/spring/5.0.2.RELEASE/
+
+
+Enterprise Application
+=======================
+
+
+Enterprise :(Business Organization) : make the money by providing services
+===================================
+Banks  :withdraw,deposit,fundTransfer,loan
+LICS   :Insurance policy
+Transports:book,cancel ticket
+Hotels  :order food,book table
+Hospitals:appointment
+School   :admission,teaching,result
+College  :admission,teaching,result
+
+
+Layer :Logical separation of code
+Tier  :Physical separation of code
+
+Applications development platforms
+
+Java
+.Net
+PHP
+Node JS
+Python
+
+
+
+Database Operation
+=====================
+C=Create
+R=Retrieve
+U=Update
+D=Delete
+
+
+fundTransfer:(int source,int destination ,int amount)
+             
+             1.retireve source and validate amount < avialable
+             2.retirve destination and validate 
+             3.debit source -update
+             4.credit destination -update
+             5.commit
+
+
+1.Presentation Layer :Code written to provide the input screen and resposne to the user
+2.Service Layer      :Logical implementation of business rules
+3.Data Access Layer  :Code written to access the data from Data source
+4.Data Layer         :It is source for Data   
+
+
+Three data sources
+==================
+Collection (List,Set,Map)
+MySQL
+MongoDB
+
+
+Data Access Layer : Hibernate
+Service Layer     : EJB
+Presentation Layer :Struts
+
+Spring -One stop shop application
+        It takes care of all layers of enterprise application
+         
+
+
+Banking
+=======
+
+Develop a Banking application
+
+Write a Java application to perform standard CRUD operations on Customer and Account Domain Objects using Map as DataSource.
+
+    
+     
+Customer
+        customerId
+        name
+        pan
+        mobile         
+        address
+        dob
+        
+
+Account:
+        accno
+	name 
+        balance
+        String pan
+        String adhar
+        doc
+        type
+
+        
+         
+CustomerMainApp
+              CustomerService
+                           CustomerDao
+                                        MapCustomerServiceImpl
+                                                                CustomerMap
+               
+
+
+                                                    
+
+
+
