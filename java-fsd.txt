@@ -122,3 +122,122 @@ CustomerMainApp
 
 
 
+Day1    21-Jun-2021
+====================
+
+Spring :  IOC ,DI via XML/Annotation
+
+
+IOC -Inversion of Control -Don't call me I  will call you
+
+DI  -It is a mechanism of initializing the dependencies 
+
+      1.setter injection      :
+      2.constructor injection :     
+      
+      
+We have to explain Spring Container about the spring beans(Java Classes) via XML file or annotations
+
+
+Step 1: create a Java Project and add spring jar files to class path
+
+
+Step 2: create a spring container (controls life-cyles of bean)
+
+                 1.Core Container -BeanFactory based
+
+                 2.Advanced Container -ApplicationContext
+
+                 3.Web Container -WebApplicationContext
+
+
+
+                             BeanFactory (I)  -Core Container
+                                 |
+                                 |XMLBeanFactory (C) :Lazy Initialization
+                                 |
+                            ApplicationContext(I)    :Eager Initialization  -Advanced Container
+                                 |
+ClasspathXMLApplicationContext (C)|    AnnotationConfigApplicationContext (C)
+                                 |
+                                 |
+                           ServletWebApplicationContext(I)           
+
+
+//core container
+
+
+Lazy Initiialization
+
+XmlBeanFactory c=new XmlBeanFactory(new ClassPathResource("beans.xml"));
+         
+         
+//advanced container
+Eager Initialization 
+    
+ClassPathXmlApplicationContext c=new ClassPathXmlApplicationContext("beans.xml");
+	    
+
+<beans default-lazy-init=false|true/>
+	    
+<bean lazy-init=false|true/>
+
+
+        
+1.get bean by type if only one bean of specific type
+  
+  CustomerMainApp cma=c.getBean(CustomerMainApp.class);
+         
+2.get bean by id when multiple beans of same type
+
+CustomerMainApp cma=(CustomerMainApp)c.getBean("customerMainApp");
+        
+
+
+
+
+DI :Mechamsim of initialzing the depencencies
+
+  setter   ->    <property name="cs" ref="customerService">
+
+  constructor -> <constructor-arg   name="cs" ref="customerService">
+                          
+                                                    
+Spring Bean Life Cycle
+==========================
+1.Instantiation
+2.Dependency Injection(setter/constructor)
+3.Initialization   (init-method)
+4.Service
+5.Destruction      (destroy-method)
+
+
+Spring Bean Scope : singleton|prototype|request|session
+
+
+
+Spring Bean Scope
+==================
+<bean  scope="singleton"/>
+
+singleton -Stateless Application
+prototype -Stateful Application
+
+request  -web
+session  -web
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
