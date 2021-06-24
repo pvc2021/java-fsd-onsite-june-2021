@@ -283,3 +283,119 @@ Note :To enable annotation based bean registration put below tag
 
 </beans>
 
+
+
+Day4    23-Jun-2021
+====================
+
+CustomerMainApp
+              CustomerService
+                           CustomerDao
+                                        MapCustomerDaoImpl
+                                                                                    CustomerMap
+
+                                        MySQLCustomerDaoImpl           
+                                                   JdbcTemplate                
+                                                         DataSource
+                                                               driverClassName       MySQL
+                                                               username
+                                                               url
+                                                               password
+
+
+
+
+add mysqljar file
+
+mysql-connector-java-8.0.25.jar file  
+
+
+SQL Script to create database,table and insert the records
+============================================================
+drop database company;
+
+create database company;
+
+use company;
+
+create table customers(
+  customerId int primary key,
+  name text,
+  pan text,
+  mobile text,
+  address text,
+  dob date
+  );
+
+insert into customers values(1111,'Sachin patil','skxnd9834f','8737726736','Pune','1982-01-01');
+insert into customers values(2222,'Sumit patil','abcnd9834f','6637726736','Mumbai','1985-01-01');
+insert into customers values(3333,'Sunil patil','abcnd9834f','7737726736','Bangalore','1989-01-01');
+
+
+select * from customers;
+
+
+JdbcTemplate
+==============
+
+
+GET the Data                   :  List query()
+                                  Object  queryForObject()   
+
+
+UPDATE,INSERT,DELETE           :  int update()
+
+               
+
+RowMapper
+==========
+
+public class CustomerRowMapper implements RowMapper<Customer> {
+
+	@Override
+	public Customer mapRow(ResultSet rs, int rownum) throws SQLException {
+
+		System.out.println("============In mapRow==========");
+
+		Customer c = new Customer();
+		c.setCustomerId(rs.getInt(1));
+		c.setName(rs.getNString(2));
+		c.setPan(rs.getString(3));
+		c.setMobile(rs.getString(4));
+		c.setAddress(rs.getString(5));
+		c.setDob(rs.getDate(6));
+
+		return c;
+	}
+
+}
+
+
+db.properties
+===============
+jdbc.driver=com.mysql.cj.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/company
+jdbc.username=root
+jdbc.password=admin
+
+
+
+<!-- Load these values before creating any beans -->
+<bean   class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+<property name="location" value="db.properties"/>
+</bean>
+
+
+
+<!-- DriverManagerDataSource -->
+<bean  class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+<property name="driverClassName"   value="${jdbc.driver}"/>
+<property name="url"   value="${jdbc.url}"/>
+<property name="username"   value="${jdbc.username}"/>
+<property name="password"   value="${jdbc.password}"/>
+</bean>
+
+
+
+
+
