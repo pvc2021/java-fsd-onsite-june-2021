@@ -286,7 +286,7 @@ Note :To enable annotation based bean registration put below tag
 
 
 Day4    23-Jun-2021
-====================
+===================
 
 CustomerMainApp
               CustomerService
@@ -305,7 +305,7 @@ CustomerMainApp
 
 
 
-add mysqljar file
+add mysqljar file in classpath
 
 mysql-connector-java-8.0.25.jar file  
 
@@ -381,6 +381,7 @@ jdbc.password=admin
 
 
 <!-- Load these values before creating any beans -->
+
 <bean   class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 <property name="location" value="db.properties"/>
 </bean>
@@ -394,6 +395,331 @@ jdbc.password=admin
 <property name="username"   value="${jdbc.username}"/>
 <property name="password"   value="${jdbc.password}"/>
 </bean>
+
+
+
+
+
+Day5    25-Jun-2021
+====================
+
+Spring AOP   :Jar file to be added in classpath : aspectjweaver-1.9.6.jar
+==========
+OOP - Object Oriented Programming
+
+AOP  -Aspect Oriented Programming
+=====
+
+
+
+
+
+Concern :Piece Of Code
+
+                           Functional          Nonfunctional
+
+Business Logic  =          Core Concern    +   Cross Cutting Concern
+
+                            withdraw                  security
+                            deposit                   logging 
+                            transfer                  scalabilty
+                                                      tx mgmt
+
+
+
+
+AOP is used to separate CCC from CC and attach CCC dynamically in a CC.
+
+Can We Separate CCC from CC using OOP? Yes but it is a static approach.
+ 
+
+
+
+
+
+
+//Core Concern
+class Banking{
+
+
+int  withdraw(int accno,double amount){
+Logging l=new Logging();
+l.print("perform withdrawl");
+
+}
+
+
+int  deposit(int accno,double amount){
+Logging l=new Logging();
+l.print("transfer");
+}
+int  fundTransfer(int source,int destination, double amount){
+Logging l=new Logging();
+l.print("perform transfer");
+}
+
+
+
+}
+
+
+//Cross Cutting
+class Logging{
+
+//What to execute
+void print(String message){
+System.out.println(message)
+}
+
+}
+
+
+
+
+Target  :It is a piece of code that implements Core Concern :Banking
+
+
+Advice  :It is a piece of code that implements Cross Cutting  Concern
+               
+                 what + when
+
+               before => execute before method
+               after  => execute after method execution complete successfully/unsuccessfully
+               after return =>execute only after method execution complete successfully
+               after throwing=>execute after method throws some exception
+               around =>It's a combination of before,after,after return and after throwing
+
+JoinPoint  :
+                 It is a well defined point in Core Concern where u want to execute CCC.
+                 Spring supports only method call as a join point.
+
+Point Cut  :
+                 It is a set of one or more join points
+                 
+
+Aspect : advice +point cut  ->what +when+where
+
+
+Weaving :Mechanism of attaching CCC to CC
+
+
+
+
+What to execute
+================
+
+public class Logging {
+	
+		
+	public Logging() {
+	System.out.println("Logging Advice created.....");
+	}
+	
+	
+	/**
+	 * * This is the method which I would like to execute * before a selected
+	 * method execution.
+	 */
+	
+	public void beforeAdvice() {
+		System.err.println("Going to setup customer profile.");
+	}
+
+	/**
+	 * * This is the method which I would like to execute * after a selected
+	 * method execution.
+	 */
+	
+	public void afterAdvice() {
+		System.err.println("Customer profile has been setup.");
+	}
+
+	
+	
+	/**
+	 * * This is the method which I would like to execute * when any method
+	 * returns.
+	 */
+    
+	public void afterReturningAdvice(Object retVal) {
+		System.err.println("Customer afterReturning:" + retVal);
+	}
+
+    
+	/**
+	 * * This is the method which I would like to execute * if there is an
+	 * exception raised by any method.
+	 */
+	
+	public void AfterThrowingAdvice(Exception ex) {
+		System.err.println("Customer There has been an exception: " + ex);
+	}
+	
+
+	public Object aroundAdvice(ProceedingJoinPoint joinPoint)throws Throwable{
+	
+    	Object returnVal=null;
+    	System.err.println("In around Advice .....");
+    	
+    	
+    	try {
+    		System.err.println("Before Proceed :");
+        	returnVal=joinPoint.proceed();
+        	System.err.println("After  Proceed :"+returnVal);
+        	 Customer value=(Customer)returnVal;
+        	
+        	 value.setName(value.getName().toUpperCase());   
+		    
+    	
+    	} catch (Throwable e) {
+             e.printStackTrace();
+         System.out.println("around Advice  exception wrapped.....");
+             
+    		}
+    	System.out.println("around Advice  over.....");
+          return returnVal;
+    }
+    }
+
+
+
+
+When to execute
+=================
+@Before
+@After
+@AfterReturn
+@AfterThrowing
+@Around
+
+
+
+Where to Execute
+==================
+@Pointcut("execution(* com.pradeep.bank.service.CustomerService.*(..))")
+private void selectAll() {}
+
+@Pointcut("execution(* com.pradeep.bank.service.CustomerService.findCustomer(..))")
+private void select() {}
+
+
+
+
+
+
+@Component
+@Aspect
+public class Logging {
+	
+	
+	
+	public Logging() {
+	System.out.println("Logging Advice created.....");
+	}
+	
+	/**
+	 * Following is the definition for a pointcut to select * all the methods
+	 * available. So advice will be called * for all the methods.
+	 */
+	@Pointcut("execution(* com.pradeep.bank.service.CustomerService.*(..))")
+	private void selectAll() {
+	}
+
+	@Pointcut("execution(* com.pradeep.bank.service.CustomerService.findCustomer(..))")
+	private void select() {
+	}
+
+	
+	
+	/**
+	 * * This is the method which I would like to execute * before a selected
+	 * method execution.
+	 */
+	@Before("selectAll()")
+	public void beforeAdvice() {
+		System.err.println("Going to setup customer profile.");
+	}
+
+	/**
+	 * * This is the method which I would like to execute * after a selected
+	 * method execution.
+	 */
+	@After("selectAll()")
+	public void afterAdvice() {
+		System.err.println("Customer profile has been setup.");
+	}
+
+	
+	
+	/**
+	 * * This is the method which I would like to execute * when any method
+	 * returns.
+	 */
+    @AfterReturning(pointcut = "selectAll()", returning = "retVal")
+	public void afterReturningAdvice(Object retVal) {
+		System.err.println("Customer afterReturning:" + retVal);
+	}
+
+    
+	/**
+	 * * This is the method which I would like to execute * if there is an
+	 * exception raised by any method.
+	 */
+	@AfterThrowing(pointcut = "selectAll()", throwing = "ex")
+	public void AfterThrowingAdvice(Exception ex) {
+		System.err.println("Customer There has been an exception: " + ex);
+	}
+	
+
+    @Around("select()")
+	public Object aroundAdvice(ProceedingJoinPoint joinPoint)throws Throwable{
+	
+    	Object returnVal=null;
+    	System.err.println("In around Advice .....");
+    	
+    	
+    	try {
+    		System.err.println("Before Proceed :");
+        	returnVal=joinPoint.proceed();
+        	System.err.println("After  Proceed :"+returnVal);
+        	 Customer value=(Customer)returnVal;
+        	
+        	 value.setName(value.getName().toUpperCase());   
+		    
+    	
+    	} catch (Throwable e) {
+             e.printStackTrace();
+         System.out.println("around Advice  exception wrapped.....");
+             
+    		}
+    	System.out.println("around Advice  over.....");
+          return returnVal;
+    }
+    }
+
+
+
+To enable Annotation based AOP
+==================================
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	default-lazy-init="true"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+
+<aop:aspectj-autoproxy/>
+
+
+</beans>
+
+
+
+
 
 
 
