@@ -751,6 +751,7 @@ http://localhost:8080/spring-web-mvc-cms/spring/greet
 http://localhost:8080/spring-web-mvc-cms/spring/today
 
 
+
 1.Tomcat Download :https://apachemirror.wuchna.com/tomcat/tomcat-9/v9.0.46/bin/apache-tomcat-9.0.46.zip
 
 2.Add Spring jar file to Tomcat lib directory
@@ -788,10 +789,6 @@ http://localhost:8080/spring-web-mvc-cms/spring/today
 </context-param>
 
 1.RootWebApplication created first
-
-
-
-
 
 
 
@@ -848,7 +845,6 @@ Spring Web MVC follows MVC2 /JSP Model2
 
 
 
-
 @RestController   =>  @Controller +  @ResponseBody 
 
 
@@ -868,18 +864,59 @@ Spring Web MVC follows MVC2 /JSP Model2
  
 
 
+Java To JSON    : @ResponseBody
+
+JSON to Java    : @RequestBody
+================================
+
+
+@ResponseBody  => Server to Client => Java Object to JSON or XML  => Accept       = application/json 
+
+@RequestBody  => Client to Server =>  JSON or XML to Java Object   => Content-Type = application/json
+
+
+@ResponseBody  => Server to Client => Java Object to JSON or XML  => Accept       = application/json 
+
+@RequestBody  => Client to Server =>  JSON or XML Java Object to  => Content-Type = application/json
+
+
+For Message Conversion :
+
+Step 1:  add below tag in spring-config file
+=======
+<mvc:annotation-driven/>
+
+Step 2:  Add below jars in class path
+=======
+jackson-core-2.9.8
+jackson-annotations-2.9.8.jar
+jackson-databind-2.9.8.jar
+
+https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core/2.9.8
+https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations/2.9.8
+https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind/2.9.8
 
 
 
 
 
+http://localhost:8080/spring-web-mvc-cms/spring/*
+http://localhost:8080/spring-web-mvc-cms/rest/*
 
 
 
 
+/spring/*   spring-ds    Controller        Service              Dao/Repository (mySQL)
+
+/rest/*     rest-ds      Controller        Service              Dao/Repository (map)
+
+      
 
 
 
+http://localhost:8080/spring-web-mvc-cms/spring/getallcustomers
+http://localhost:8080/spring-web-mvc-cms/rest/customers
+http://localhost:8080/spring-web-mvc-cms/rest/customers/101
 
 
 
