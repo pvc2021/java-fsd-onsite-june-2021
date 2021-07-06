@@ -1083,6 +1083,86 @@ https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-
 
 
 
+day 11
+=======
+
+
+
+spring.datasource.url=jdbc:mysql://localhost:3306/company
+spring.datasource.driverClassName=com.mysql.jdbc.Driver
+spring.datasource.username=root
+spring.datasource.password=admin
+#spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
+
+#InternalResourceViewResolver 
+spring.mvc.view.prefix=/WEB-INF/views/
+spring.mvc.view.suffix=.jsp
+
+
+
+<!--   To generate JSP output -->
+		
+
+                <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		
+
+Hibernate ORM Tool
+=====================
+           Employee
+===========================
+Id       Name        Salary
+============================
+101     PRadeep      120000                     Employee e=new Employee(101,"Pradeep",120000);
+==============================
+
+
+class Employee{
+private int id;
+private String name;
+private double salary
+}
+
+
+
+JPA Java Persistance API  (ORM Specification)
+
+Hibernate
+Ibatis
+toplink
+
+
+
+CRUDRepository
+       |
+PagingAndSortingRepository
+       |
+JPARepository
+ 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
