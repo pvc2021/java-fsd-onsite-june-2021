@@ -1307,14 +1307,19 @@ spring.datasource.initialization-mode=ALWAYS
 
 
 
-
-
+day 13 :8-July-2021
 
 
 MongoDB details
 =================
 
 https://www.tutorialspoint.com/mongodb/mongodb_overview.htm
+
+
+
+https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-4.4.6-signed.msi
+
+
 
 Mongo DB                   RDBMS
 ==================================          
@@ -1332,7 +1337,6 @@ Embeded documents         Joins
 
 To start Mongo DB Server
 ========================
-
 
 
 Create a folder in c drive :  c:\data\db
