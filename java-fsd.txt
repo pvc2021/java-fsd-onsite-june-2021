@@ -1338,7 +1338,6 @@ Embeded documents         Joins
 To start Mongo DB Server
 ========================
 
-
 Create a folder in c drive :  c:\data\db
 
 C:\Program Files\MongoDB\Server\3.4\bin>mongod   <enter>
@@ -1351,9 +1350,25 @@ C:\Program Files\MongoDB\Server\3.4\bin>mongo <enter>
 
 
 
+day 14    :9-July-2021   
+========================
+Hibernate Relations
+
+1.One To One             Employee  => EmployeeAddress
+2.One To Many            Group     => Story    
+3.Many To One            Group     => Story   
+4.Many To Many           Book      => Author  
 
 
 
+JPA  ->ORM Specifiaction
+   Hibenrate -> ORM Implementation
+
+
+
+Online Shopping CaseStudy
+=============================
+https://o7planning.org/10683/create-a-shopping-cart-web-application-with-spring-boot-hibernate
 
 
 
