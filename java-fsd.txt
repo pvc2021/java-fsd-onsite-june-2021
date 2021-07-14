@@ -1391,6 +1391,8 @@ Features of Angular
 
 5.Modules,Directives,Filters/Pipes,Services, Controllers (Components and Templates) etc....
 
+Module
+=============
 Module is a container for services,directives,pipes,components and some other modules also.
 
 
@@ -1428,10 +1430,8 @@ To make angular development easy Angular team has provided one tool (@angular/cl
 @angular/cli tool internally depends on Node JS
 
 
-1.
-
-Install Node JS               :  https://nodejs.org/en/download/
-Install Visual Studion Code  :  https://code.visualstudio.com/
+1. Install Node JS               :  https://nodejs.org/en/download/
+   Install Visual Studion Code  :  https://code.visualstudio.com/
 
 
 2. To see the version of node 
@@ -1491,6 +1491,10 @@ or
 D:\angular-12\pvc-angular-app>ng serve
 
 
+or 
+
+D:\angular-12\pvc-angular-app>ng serve -o
+
 
 npm start => 
         ng serve  =>
@@ -1498,7 +1502,6 @@ npm start =>
                                 =>AppComponent=>
                                            app.component.html=>
                                                         <app-root><app-root>=>index.html
-
 
 
 
@@ -1536,6 +1539,10 @@ v Compiled successfully.
 angular cli commands
 =========================
 
+ng generate c <<componenet_name>>
+
+
+
 To create a component  => ng g c  <Angular4Basics>
 To create a service    => ng g s  <AngularService>
 To create a directive  => ng g d  <AngularDirective>
@@ -1546,10 +1553,14 @@ To create a class      => ng g class <AngularClass>
 
 Routing
 ===========
-/basics        => AngularBasics
-/pipes         => AngularPipes
-/technologies  => Technologies
-/home          => Home  
+
+[routerLink]  is a attribute directive to implement the routing
+
+
+/basics        => AngularBasics              <a [routerLink]="['/basics']"  > Basics </a>
+/pipes         => AngularPipes               <a [routerLink]="['/pipes']"  > Angular Pipes </a>
+/technologies  => Technologies               <a [routerLink]="['/technologies']"  > Technologies </a> 
+/home          => Home                       <a [routerLink]="['/home']"  > Home </a>  
 
 
 templateUrl: './app.component.html',//Where to display if code is greater than 3 lines
@@ -1563,6 +1574,82 @@ Component is responsible for 4 things
  2.How to display?
  3.Where to display?
  4.Where to inject?
+
+
+Angular Binding types
+======================
+
+1. Interpolation   
+
+       Interpolation use the {{ expression }} to render the bound value to the component’s template.
+
+2.Property Binding
+
+       Property binding user [] to send values from the component  to the template.
+
+3.Event Binding
+
+         (click)="showHide()"
+
+4.One way data binding
+         
+           [ngModel]="name"
+
+4.Two way data binding
+         
+           [(ngModel)]="name"
+     
+
+
+ 
+
+Note :TypeScript class members are public by default.
+
+comopnent  ->@Component
+module     ->@NgModule
+pipe       ->@Pipe
+directive  ->@Directive
+service    ->@Injectable
+
+
+Angular Directives  :add functionalities to HTML elements
+==========================================================
+
+Attribute Directve    :Won't change the HTML DOM structure
+====================== 
+ [ngStyle]
+ [ngClass]
+ [ngModel] =>It is applicable for only input elements > FormsModule
+ [ngSwitch]
+ [routerLink]
+
+Structural Directive :Will change the HTML DOM structure
+====================
+   *ngFor
+   *ngIf
+   *ngSwitchCase   => It is applicable for only container tags
+   *ngSwitchDefault=> It is applicable for only container tags
+
+Component Directive
+==================
+<app-root>  </app-root>
+<ng-template></ng-template>
+
+
+
+2.Custom Directives
+=======================
+Attribute Directive   :  ElementRef and Renderer2
+====================
+
+<h1  [bgColor]="'red'"  [fgColor]="'red'" >Hello World</h1>
+
+Structural Directive    :TemplateRef  and VieContainerRef
+=======================
+
+<h1  *show="true">Hello World</h1>
+
+<h1  *hide="true">Hello World</h1>
 
 
 
