@@ -1554,7 +1554,42 @@ To create a class      => ng g class <AngularClass>
 Routing
 ===========
 
-[routerLink]  is a attribute directive to implement the routing
+=> [routerLink]  is a attribute directive to implement the routing
+
+
+
+<li class="active"><a [routerLink]="['/home']">Home</a></li>
+<li class="active"><a [routerLink]="['/basics']">Basics</a></li>
+<li class="active"><a [routerLink]="['/pipes']">Pipes</a></li>
+<li class="active"><a [routerLink]="['/technologies']">Technologies</a></li>
+                            
+ 
+
+
+
+app.routing.module.ts
+======================
+const routes: Routes = [
+  {path:'home',component:HomeComponent},
+  {path:'basics',component:AngularBasicsComponent},
+  {path:'pipes',component:AngularPipesComponent},
+  {path:'technologies',component:TechnologiesComponent},
+  {path:'**',redirectTo:'home'}
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+
+
+
+
+
+
+
 
 
 /basics        => AngularBasics              <a [routerLink]="['/basics']"  > Basics </a>
@@ -1583,9 +1618,14 @@ Angular Binding types
 
        Interpolation use the {{ expression }} to render the bound value to the component’s template.
 
+         min="{{min}}"
+
+
 2.Property Binding
 
        Property binding user [] to send values from the component  to the template.
+
+           [max]="max"   
 
 3.Event Binding
 
@@ -1619,7 +1659,7 @@ Attribute Directve    :Won't change the HTML DOM structure
 ====================== 
  [ngStyle]
  [ngClass]
- [ngModel] =>It is applicable for only input elements > FormsModule
+ [ngModel] =>It is applicable for only input elements > FormsModule should be imported in AppModule
  [ngSwitch]
  [routerLink]
 
@@ -1653,6 +1693,69 @@ Structural Directive    :TemplateRef  and VieContainerRef
 
 
 
+
+
+Angular Buitlin Pipes  (Format,Sort,Search)   :11 builtin pipes
+==============================================================
+
+String
+========
+uppercase
+lowercase
+titlecase (angular4)
+slice  
+
+array
+=====
+slice
+
+array|slice:startIndex:lastIndex
+
+
+number
+======
+number     salary|number:'9.3-4'   
+currency   salary|currency:'Rs'
+percent   salary|percent
+
+date
+=====
+date      
+
+dob|date:'shortDate'
+dob|date:'mediumDate'
+dob|date:'longDate'
+dob|date:'fullDate'
+dob|date:'dd-MM-yyyy'
+
+Object
+======
+object|json
+object|keyvalue
+
+Observable
+===========
+async
+
+
+Angular Custom Pipes
+=====================
+gender|gender    
+
+
+gender|gender1    =>1 =Mr.  2=>Ms.  3.    
+
+
+employees|orderBy   =>sort employees on id basis in ascending order
+
+employees|orderBy:'id'   =>sort employees on id basis in ascending order
+
+employees|orderBy:'name'   =>sort employees on name basis in ascending order
+
+employees|orderBy:'name':true   =>sort employees on name basis in descending order
+
+
+employees|filter:'searchText'
 
 
 
