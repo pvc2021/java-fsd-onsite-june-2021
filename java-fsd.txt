@@ -1370,8 +1370,7 @@ Online Shopping CaseStudy
 =============================
 https://o7planning.org/10683/create-a-shopping-cart-web-application-with-spring-boot-hibernate
 
-day 15 :13-July-2021   
-=====================
+
 
 What is Angular  ?
 =================
@@ -1616,7 +1615,7 @@ Angular Binding types
 
 1. Interpolation   
 
-       Interpolation use the {{ expression }} to render the bound value to the component’s template.
+       Interpolation use the {{ expression }} to render the bound value to the component?s template.
 
          min="{{min}}"
 
@@ -1696,7 +1695,47 @@ Structural Directive    :TemplateRef  and VieContainerRef
 
 
 Angular Buitlin Pipes  (Format,Sort,Search)   :11 builtin pipes
-==============================================================
+================================================================
+
+Dummy Data
+============
+employees=[
+    {id:12,name:'Ram chinchole',salary:2345500,variable:0.15,
+    city:'Pune',mobile:'8149976894',pan:'cmxac9845d',
+    doj:new Date("February 01,2011"),isMarried:true,gender:1,age:33
+   },
+   {id:23,name:'Sachin chinchole',salary:324242.456784343,variable:0.10,
+   city:'Mumbai',mobile:'7123456732',pan:'abxac9845a',
+   doj:new Date("April 01,2013"),isMarried:true,gender:1,age:23
+  },
+  
+  {id:11,name:'Ameya Joshi',salary:34343.456784343,variable:0.11,
+  city:'Mumbai',mobile:'7788554433',pan:'abcac9845c',
+  doj:new Date("June 01,2018"),isMarried:true,gender:1,age:34
+ },
+ 
+ {id:14,name:'Prachitee chinchole',salary:45345.456784343,variable:0.20,
+ city:'Pune',mobile:'9158652627',pan:'xyzac9845d',age:45,
+ doj:new Date("June 01,2010"),isMarried:false,gender:2
+},
+
+{id:21,name:'Prachi chinchole',salary:4345345.456784343,variable:0.15,
+city:'Solapur',mobile:'9890732222',pan:'pvcac9845d',age:56,
+doj:new Date("February 01,2017"),isMarried:true,gender:2
+},
+
+{id:17,name:'Mahesh chinchole',salary:345345.34324,variable:0.12,
+city:'Solapur',mobile:'7158652622',pan:'amxac9845d',
+doj:new Date("May 01,2013"),isMarried:false,gender:3,age:25
+},
+];
+
+
+
+
+
+
+
 
 String
 ========
@@ -1716,7 +1755,7 @@ number
 ======
 number     salary|number:'9.3-4'   
 currency   salary|currency:'Rs'
-percent   salary|percent
+percent    salary|percent
 
 date
 =====
@@ -1737,23 +1776,9 @@ Observable
 ===========
 async
 
-Angular Custom Pipes
-=====================
-gender|gender    
 
-gender|gender1    =>1 =Mr.  2=>Ms.  3.    
-
-
-employees|orderBy   =>sort employees on id basis in ascending order
-
-employees|orderBy:'id'   =>sort employees on id basis in ascending order
-
-employees|orderBy:'name'   =>sort employees on name basis in ascending order
-
-employees|orderBy:'name':true   =>sort employees on name basis in descending order
-
-
-employees|filter:'searchText'
+day 17:   16-July-2021
+===========================
 
 
 
@@ -1766,6 +1791,9 @@ Angular provides builtin HttpClient service available in  HttpClientModule  (@an
 
 Fake Rest fual Web API
 ========================
+
+https://jsonplaceholder.typicode.com
+
 
 https://jsonplaceholder.typicode.com/users            GET
 https://jsonplaceholder.typicode.com/users/1          GET
@@ -1836,10 +1864,70 @@ https://jsonplaceholder.typicode.com/comments?postId=1
 
  syntax  :  this.userId=this.route.snapshot.queryParams.userId;
 
+day 18:   19-July-2021
+===========================
+
+Angular Custom Pipes
+=====================
+
+
+To create a Custom Pipe we have to write a class decorated by @Pipe and implmeneting
+PipeTransform and overriding transofrom() method in it.
+
+
+Custom Pipe Gender
+=====================
+
+ng g p pipes/Gender
+
+gender|gender     1 :Male   ,2 :Female 3:Not disclosed
+
+
+@Pipe({
+  name: 'gender'
+})
+export class GenderPipe implements PipeTransform {
+
+  transform(value: number): string {
+    switch(value){
+      case 1: return "Male";
+      case 2: return "Female";
+      case 3: return "Not disclosed";
+    }
+     return "";
+  
+  }
+}
+
+
+Custome Pipe :gender1
+======================
+
+gender|gender1    =>1 =Mr.  2=>Ms.  3.    
+
+
+Custom Pipe orderBy
+======================
+
+employees|orderBy   =>sort employees on id basis in ascending order
+
+employees|orderBy:'id'   =>sort employees on id basis in ascending order
+
+employees|orderBy:'name'   =>sort employees on name basis in ascending order
+
+employees|orderBy:'name':true   =>sort employees on name basis in descending order
 
 
 
 
 
+Custom Pipe filter :  https://www.npmjs.com/package/ng2-search-filter
+=======================================================================
+
+npm i ng2-search-filter
+
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+
+employees|filter:'searchText'
 
 
