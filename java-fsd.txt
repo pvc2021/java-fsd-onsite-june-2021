@@ -1782,10 +1782,11 @@ day 17:   16-July-2021
 
 
 
-Angular Services  (Reusbale business login)
+Angular Services  (Reusbale business logic)
 ===============================================
 
-Angular provides builtin HttpClient service available in  HttpClientModule  (@angular/common/http) to invoke remote service.
+Angular provides builtin HttpClient service available in  HttpClientModule 
+(@angular/common/http) to invoke remote service.
 
 
 
@@ -1872,7 +1873,7 @@ Angular Custom Pipes
 
 
 To create a Custom Pipe we have to write a class decorated by @Pipe and implmeneting
-PipeTransform and overriding transofrom() method in it.
+PipeTransform i/f and overriding transofrom() method in it.
 
 
 Custom Pipe Gender
@@ -1900,7 +1901,7 @@ export class GenderPipe implements PipeTransform {
 }
 
 
-Custome Pipe :gender1
+Custom Pipe :gender1
 ======================
 
 gender|gender1    =>1 =Mr.  2=>Ms.  3.    
@@ -1930,4 +1931,79 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 employees|filter:'searchText'
 
+
+day 19: 20-July-2021
+====================
+Angular Integration with Backend Spring Boot Application
+
+Angular provides builtin HttpClient service available in  HttpClientModule 
+(@angular/common/http) to invoke remote service.
+
+http://localhost:1212/spring-boot-cms-v2/rest/customers/
+
+
+
+ng g s services/CustomersService
+
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CustomersService {
+
+private baseURL="http://localhost:1212/spring-boot-cms-v2/rest/customers";
+
+  constructor(private http:HttpClient) {
+    console.log("========CustomersService created===============");
+   
+  }
+
+  getAllCustomers():Observable<any>{
+    return this.http.get(this.baseURL);
+  }
+
+  getCustomerById(customerId:number):Observable<any>{
+    return this.http.get(this.baseURL+"/"+customerId);
+  }
+
+  deleteCustomerById(customerId:number):Observable<any>{
+    return this.http.delete(this.baseURL+"/"+customerId);
+  }
+
+  updateCustomerById(customerId:number,customer:any):Observable<any>{
+    return this.http.put(this.baseURL+"/"+customerId,customer);
+  }
+  
+  addCustomer(customer:any):Observable<any>{
+    return this.http.post(this.baseURL,customer);
+  }
+  
+}
+
+
+ng g c Customers
+
+
+customers:1 Access to XMLHttpRequest at 'http://localhost:1212/spring-boot-cms-v2/rest/customers' from origin 'http://localhost:4200' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+
+Cross Origin Resource Sharing
+
+To allow CORS put below annotation 
+
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:3333"})
+@RestController
+@RequestMapping("/rest/customers")
+public class CustomerRestController { }
+
+
+
+Front end  :4200
+Back end   :1212
 
