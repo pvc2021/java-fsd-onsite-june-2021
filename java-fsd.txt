@@ -1676,21 +1676,6 @@ Component Directive
 
 
 
-2.Custom Directives
-=======================
-Attribute Directive   :  ElementRef and Renderer2
-====================
-
-<h1  [bgColor]="'red'"  [fgColor]="'red'" >Hello World</h1>
-
-Structural Directive    :TemplateRef  and VieContainerRef
-=======================
-
-<h1  *show="true">Hello World</h1>
-
-<h1  *hide="true">Hello World</h1>
-
-
 
 
 
@@ -1934,6 +1919,7 @@ employees|filter:'searchText'
 
 day 19: 20-July-2021
 ====================
+
 Angular Integration with Backend Spring Boot Application
 
 Angular provides builtin HttpClient service available in  HttpClientModule 
@@ -2006,4 +1992,80 @@ public class CustomerRestController { }
 
 Front end  :4200
 Back end   :1212
+
+ng serve --port 3333     //will start the live server on 3333
+
+ng serve --port 3333 -o  //will start the live server on 3333 and open the browser automatically
+
+
+day 20: 21-July-2021
+====================
+
+1.Component To Component communication
+========================================
+
+   Nested   => Parent   =>Child
+
+
+		Parent -> Child   =>   @Input() parentMessage; 
+
+                Child ->   Parent  =>  @Output()childChanged=new EventEmitter<string>(); (custom events)
+     
+
+  <app-child   (childChanged)="childMessage=$event"      [parentMessage]="message"></app-child>
+
+2.Custom Directives
+====================
+
+Attribute Directive   :  ElementRef and Renderer2
+====================
+
+<h1  [bgColor]="'red'"  [fgColor]="'red'" >Hello World</h1>
+
+
+Structural Directive    :TemplateRef  and ViewContainerRef
+=======================
+
+<h1  *show="true">Hello World</h1>
+
+<h1  *hide="true">Hello World</h1>
+
+
+3.Injection using @ViewChild decorator
+=======================================
+
+1.To Inject The Component
+
+  @ViewChild(NumberComponent,{static:false}) 
+  private n:NumberComponent; 
+
+
+2.To Inject The Directive
+
+  @ViewChild(FgColorDirective,{static:false}) 
+  private f:FgColorDirective;
+  
+
+3.To Inject The ElementRef
+
+  @ViewChild("name",{static:false}) 
+  private name:ElementRef;
+  
+  @ViewChild("city",{static:false}) 
+  private city:ElementRef;
+  
+
+
+
+
+
+
+1.Pagination
+2.Form Validation
+3.Angular Guards
+
+
+1.Component LifeCycle
+2.Angular Testring
+3.Angular readymade case study
 
