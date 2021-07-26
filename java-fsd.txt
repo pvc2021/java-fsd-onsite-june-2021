@@ -2339,9 +2339,26 @@ constructor(private router:Router){
 
 
 
-2.Component LifeCycle
-==========================
-    
+2.Component/Directive  LifeCycle Hooks
+=======================================
+
+https://angular.io/guide/lifecycle-hooks
+
+
+Lifecycle hooks
+=================
+A component instance has a lifecycle that starts when Angular instantiates the component class and renders
+the component view along with its child views. The lifecycle continues with change detection,
+as Angular checks to see when data-bound properties change, and updates both the view and the component
+instance as needed. The lifecycle ends when Angular destroys the component instance and removes its rendered 
+template from the DOM. Directives have a similar lifecycle, as Angular creates, updates, and destroys instances 
+in the course of execution.
+
+Your application can use lifecycle hook methods to tap into key events in the lifecycle of a component or directive
+in order to initialize new instances, initiate change detection when needed, respond to updates during change detection, 
+and clean up before deletion of instances.
+
+   
 
   constructor() {
     console.log("$$$$$$$$$$$$$$$$$$ RegisterComponent created   $$$$$$$$$$")
@@ -2357,7 +2374,7 @@ constructor(private router:Router){
   }
  
   
-  //work only if Compone hav @Input() property 
+  //work only if Compone have @Input() property 
   ngOnChanges() {
     console.log("$$$$$$$$$$$$$$$$$$ RegisterComponent ngOnChanges  $$$$$$$$$$")
   }
@@ -2380,21 +2397,79 @@ constructor(private router:Router){
 
 
 
-
-
 3.Angular Testing
 
+App =>  3
+Home => 1
+Calculator =>6
+ValidateAge =>6
+
+20
+60
+56
+15
+67
+
+To test the application
+=========================
+npm test or  ng test
+
+
+To generate a coverage report run the following command in the root of your project.
+======================================================================================
+
+ng test --no-watch --code-coverage
+
+https://angular.io/guide/testing-code-coverage
+
+Jasmine API 
+
+xit   :xit should set test state to skipped 
+
+xdescribe :Never execute if spec.ts file is defined with xdescribed
 
 
 4.Angular Configuration
-
         angular.json
 	tsconfig.json 
 
 
-
 5.Angular readymade case study
 https://github.com/DanWahlin/Angular-JumpStart
+
+
+Angular documentation
+======================
+https://angular.io/
+
+
+
+Angular   + Spring Boot Integration
+
+
+CORS => Cros Origin Resource Sharing
+
+What is the CORS Policy?
+CORS stands for “Cross-Origin Resource Sharing” and is a way for a website to use resources not hosted by its domain as their own. 
+This became an W3C recommendation in 2014 and has been adopted by all major browsers.
+The purpose is to prevent scripts from from making requests to non-authorized domains.
+
+1.Protocol should be same
+2.domain should be same
+3.Port shoud be same
+
+
+Front end    :4200    :http://localhost:4200
+Backend end  :1212    :http://localhost:1212
+
+
+
+To generate Production Code of Angular
+
+ng build --prod
+ng build
+
+It prepares the build of application in a dist folder
 
 
 
