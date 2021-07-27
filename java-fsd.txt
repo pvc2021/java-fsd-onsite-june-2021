@@ -2057,6 +2057,7 @@ Structural Directive    :TemplateRef  and ViewContainerRef
 
 day 21: 22-July-2021
 ====================
+
 1.Pagination
 
 Pagination Template
@@ -2339,6 +2340,10 @@ constructor(private router:Router){
 
 
 
+
+day 23: 26-July-2021
+====================
+
 2.Component/Directive  LifeCycle Hooks
 =======================================
 
@@ -2396,6 +2401,8 @@ and clean up before deletion of instances.
   }
 
 
+day 24: 26-July-2021
+====================
 
 3.Angular Testing
 
@@ -2473,5 +2480,10 @@ It prepares the build of application in a dist folder
 
 
 
+Angular interview questions
+==============================
 
 
+https://angular.io/cli
+
+https://www.interviewbit.com/angular-interview-questions/
