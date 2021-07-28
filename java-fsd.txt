@@ -2429,17 +2429,55 @@ ng test --no-watch --code-coverage
 
 https://angular.io/guide/testing-code-coverage
 
-Jasmine API 
+Jasmine - API 
 
-xit   :xit should set test state to skipped 
+1.it()  -unit testing
 
-xdescribe :Never execute if spec.ts file is defined with xdescribed
+2.describe() - TestSuite 
+
+3.xit()   :xit should set test state to skipped 
+
+4.xdescribe() :Never execute if spec.ts file is defined with xdescribed
+
+
+Karma  : Test runner   : 9876
+
+*.spec.ts
+karma.conf.js
+
+
+
+E:\java-fsd-onsite-june-2021-main\my-angular-app>ng g c Test --skip-tests
+CREATE src/app/test/test.component.html (19 bytes)
+CREATE src/app/test/test.component.ts (267 bytes)
+CREATE src/app/test/test.component.css (0 bytes)
+UPDATE src/app/app.module.ts (3681 bytes)
+
+E:\java-fsd-onsite-june-2021-main\my-angular-app>ng g c TestB
+CREATE src/app/test-b/test-b.component.html (21 bytes)
+CREATE src/app/test-b/test-b.component.spec.ts (620 bytes)
+CREATE src/app/test-b/test-b.component.ts (274 bytes)
+CREATE src/app/test-b/test-b.component.css (0 bytes)
+UPDATE src/app/app.module.ts (3763 bytes)
+
+E:\java-fsd-onsite-june-2021-main\my-angular-app>
+
+
+ng serve
+ng serve --o
+ng test
+ng serve --o --port=3333
+ng build
+
+Karma  :9876
+
 
 
 4.Angular Configuration
-        angular.json
-	tsconfig.json 
 
+	angular.json   : 
+	tsconfig.json  :TypeScript version
+        karma.conf.js  :TestRunner 
 
 5.Angular readymade case study
 https://github.com/DanWahlin/Angular-JumpStart
@@ -2470,15 +2508,12 @@ Front end    :4200    :http://localhost:4200
 Backend end  :1212    :http://localhost:1212
 
 
-
 To generate Production Code of Angular
 
 ng build --prod
 ng build
 
 It prepares the build of application in a dist folder
-
-
 
 Angular interview questions
 ==============================
@@ -2487,3 +2522,107 @@ Angular interview questions
 https://angular.io/cli
 
 https://www.interviewbit.com/angular-interview-questions/
+
+https://angular.io/guide/aot-compiler
+
+
+day 25 :28-July-2021
+=====================
+Will start 15 mins late  :7:15 am IST.
+
+
+Angular    :Framework
+React.js   :JS Library
+Vue.js     :JS Library +Framework
+
+
+On Perofrmance basis   :Perofrmance
+==================================
+1.React.js
+2.Vue.js
+3.Angular  
+
+SPA (Single Page Application)
+
+PWA (Progressive Web Applications)
+==================================
+
+The main PWA features and a comparison of them to native apps and web apps
+PWAs have numerous key features that make them different from traditional web and native apps:
+
+1.Full responsiveness and browser compatibility.
+================================================
+These apps are built according to progressive enhancement principles. Progressive enhancement is the web design strategy of providing the basic functionality and content to everyone regardless of browsers they use or connection quality while delivering more sophisticated page versions to users whose newer browsers can support them.
+
+So, PWAs work with all browsers and are compatible with any device, regardless of screen size and other specifications. Tablet and mobile users will have the same experience. You can even adjust the app to the desktop if needed.
+
+Connectivity independence.    
+===========================
+Progressive web applications can work both offline and on low-quality networks.
+
+
+App-like interface. 
+===================
+These apps mimic navigation and interactions of native apps.
+
+
+
+Push notifications. 
+===================
+If used as a part of a good messaging strategy, push notifications can keep customers interested, motivating them to open and use an app more.
+
+Self-updates. 
+=============
+Able to update themselves automatically, apps stay fresh.
+
+Safety.
+=======
+These apps are served through HTTPS, so unauthorized users can’t access their content.
+
+Discoverability and easy installation.
+=======================================
+While search engines classify PWAs as applications, they are not distributed via app stores. These apps can be shared through a URL instead so they’re easily found. The installation is simple and entails visiting a site and adding it to a device home screen.
+
+With the PWAs’ significant features in mind, let’s consider additional characteristics to compare these apps with native and standard web apps.
+
+
+Progressive web apps have taken functionality from both native and web apps. They can run fast regardless of mobile operating systems and device types also providing rich functionality as if they were developed for a specific device. Thanks to easy installation, discoverability, automated updates, slow network or even the offline work mode, PWAs can enhance user experience.
+
+https://www.altexsoft.com/blog/engineering/progressive-web-apps/
+
+MicorService
+
+Front End
+==========
+Angular
+React
+
+Beckend
+=======
+Java
+Spring ,Spring Boot
+
+MicorServices (Cloud) 
+
+DevOps
+======
+Git,Git hub
+Docker
+Jenkins
+Kubernetes
+
+
+1.Java FSD
+2.MEAN  =>MongoDB Express Angular Node JS
+3.MERN  =>MongoDB Express React   Node JS
+
+
+Cloud
+=========
+AWS Cloud Practioner
+AWS Developer Associate
+AWS Solution Architect
+PCF
+
+pradeepch82@gmail.com
+9158652627
